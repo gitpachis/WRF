@@ -1,6 +1,7 @@
-!  Create an initial data set for the WRF model based on real data.  This
-!  program is specifically set up for the Eulerian, mass-based coordinate.
+!  Create an initial data set for the WRF model based on real data.  This            
+!  program is specifically set up for the Eulerian, mass-based coordinate.              
 PROGRAM real_data
+
 
    USE module_machine
 #ifdef DM_PARALLEL
@@ -29,7 +30,7 @@ PROGRAM real_data
 #endif
    USE module_utility, ONLY : WRFU_finalize
 
-   IMPLICIT NONE
+   IMPLICIT NONE   
 
 #if ( WRF_CHEM == 1 )
   ! interface
