@@ -3361,13 +3361,11 @@
       DO i = 1, model_config_rec % max_dom
          IF ( .NOT. model_config_rec % grid_allowed(i) ) CYCLE
          IF ( ( model_config_rec % mp_physics(i) .EQ. MILBRANDT2MOM ) .OR. &
-#if (EM_CORE == 1)
               ( model_config_rec % mp_physics(i) .EQ. NSSL_2MOM     ) .OR. &
               ( model_config_rec % mp_physics(i) .EQ. NSSL_2MOMG    ) .OR. &
               ( model_config_rec % mp_physics(i) .EQ. NSSL_2MOMCCN  ) .OR. &
               ( model_config_rec % mp_physics(i) .EQ. NSSL_1MOM     ) .OR. &
               ( model_config_rec % mp_physics(i) .EQ. NSSL_1MOMLFO  ) .OR. &
-#endif
               ( model_config_rec % do_radar_ref  .EQ. 1             ) ) THEN
             model_config_rec % compute_radar_ref = 1
          END IF
@@ -3400,14 +3398,12 @@
 ! additional output 
 !-----------------------------------------------------------------------
 
-#if (EM_CORE == 1)
       DO i = 1, model_config_rec % max_dom
          IF ( .NOT. model_config_rec % grid_allowed(i) ) CYCLE
          IF ( ( model_config_rec % bl_pbl_physics(i) .NE. MYNNPBLSCHEME  ) ) THEN
             model_config_rec % bl_mynn_edmf = 0
          END IF
       ENDDO
-#endif
 
 !-----------------------------------------------------------------------
 ! Set the namelist parameters for the RRTMG radiation scheme if either
@@ -3435,7 +3431,6 @@
 ! sf_surface_physics
 !-----------------------------------------------------------------------
 
-#if (EM_CORE == 1)
       IF      (   model_config_rec % sf_surface_physics(1) .EQ. NOLSMSCHEME  ) THEN
          model_config_rec % num_soil_layers = 5
       ELSE IF (   model_config_rec % sf_surface_physics(1) .EQ. SLABSCHEME   ) THEN
@@ -3466,7 +3461,6 @@
          WRITE (wrf_err_message, FMT='(A,I6)') '--- ERROR: sf_surface_physics = ' , model_config_rec % sf_surface_physics(1)
          CALL wrf_error_fatal ( TRIM(wrf_err_message) )
       END IF 
-#endif
 
       WRITE (wrf_err_message, FMT='(A,I6)') '--- NOTE: num_soil_layers has been set to ', &
                                              model_config_rec % num_soil_layers
