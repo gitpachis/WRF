@@ -632,10 +632,10 @@ add_compile_definitions(
                         # Only define if set, this is to use #ifdef/#ifndef preprocessors
                         # in code since cmake cannot handle basically any others :(
                         # https://gitlab.kitware.com/cmake/cmake/-/issues/17398
-                        $<$<BOOL:${ENABLE_CHEM}>:WRF_CHEM=$<BOOL:${ENABLE_CHEM}>>
+                        $<$<BOOL:${ENABLE_CHEM}>:WRF_CHEM>
                         $<$<BOOL:${ENABLE_CHEM}>:BUILD_CHEM=$<BOOL:${ENABLE_CHEM}>>
                         $<$<BOOL:${ENABLE_CMAQ}>:WRF_CMAQ=$<BOOL:${ENABLE_CMAQ}>>
-                        $<$<AND:$<BOOL:${ENABLE_CHEM}>,$<BOOL:${ENABLE_KPP}>>:WRF_KPP=$<BOOL:${ENABLE_KPP}>>
+                        $<$<AND:$<BOOL:${ENABLE_CHEM}>,$<BOOL:${ENABLE_KPP}>>:WRF_KPP>
                         $<$<BOOL:${ENABLE_DFI_RADAR}>:WRF_DFI_RADAR=$<BOOL:${ENABLE_DFI_RADAR}>>
                         $<$<BOOL:${ENABLE_TITAN}>:WRF_TITAN=$<BOOL:${ENABLE_TITAN}>>
                         $<$<BOOL:${ENABLE_MARS}>:WRF_MARS=$<BOOL:${ENABLE_MARS}>>
